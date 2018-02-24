@@ -1,0 +1,15 @@
+<?php
+
+/**
+ * @file
+ * Hook implementations of the Commerce Discounted Product module.
+ */
+
+/**
+ * Implements hook_cron().
+ */
+function commerce_discounted_product_cron() {
+  /** @var \Drupal\commerce_discounted_product\DiscountedProductStorageInterface $discounted_product_storage */
+  $discounted_product_storage = \Drupal::service('commerce_discounted_product.discounted_product_storage');
+  $discounted_product_storage->cleanupOutdatedRecords();
+}

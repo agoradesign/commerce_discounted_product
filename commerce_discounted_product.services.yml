@@ -1,0 +1,65 @@
+services:
+  commerce_discounted_product.discounted_product_service:
+    class: Drupal\commerce_discounted_product\DiscountedProductService
+    arguments:
+      - '@commerce_discounted_product.chain_applicability_checker'
+      - '@entity_type.manager'
+      - '@datetime.time'
+
+  commerce_discounted_product.discounted_product_storage:
+    class: Drupal\commerce_discounted_product\DiscountedProductStorage
+    arguments:
+      - '@database'
+      - '@datetime.time'
+
+  commerce_discounted_product.chain_applicability_checker:
+    class: Drupal\commerce_discounted_product\Applicability\ChainApplicabilityChecker
+    tags:
+      - { name: service_collector, call: addChecker, tag: commerce_discounted_product.applicability_checker }
+
+  commerce_discounted_product.coupon_promotion_applicability_checker:
+    class: Drupal\commerce_discounted_product\Applicability\CouponPromotionApplicabilityChecker
+    tags:
+      - { name: commerce_discounted_product.applicability_checker, priority: 100 }
+
+  commerce_discounted_product.inactive_promotion_applicability_checker:
+    class: Drupal\commerce_discounted_product\Applicability\InactivePromotionApplicabilityChecker
+    arguments:
+      - '@datetime.time'
+    tags:
+      - { name: commerce_discounted_product.applicability_checker, priority: 100 }
+
+  commerce_discounted_product.product_reference_applicability_checker:
+    class: Drupal\commerce_discounted_product\Applicability\ProductReferenceApplicabilityChecker
+    tags:
+      - { name: commerce_discounted_product.applicability_checker, priority: 0 }
+
+  commerce_discounted_product.product_type_applicability_checker:
+    class: Drupal\commerce_discounted_product\Applicability\ProductTypeApplicabilityChecker
+    arguments:
+      - '@entity_type.manager'
+    tags:
+      - { name: commerce_discounted_product.applicability_checker, priority: 0 }
+
+  commerce_discounted_product.product_variation_type_applicability_checker:
+    class: Drupal\commerce_discounted_product\Applicability\ProductVariationTypeApplicabilityChecker
+    arguments:
+      - '@entity_type.manager'
+    tags:
+      - { name: commerce_discounted_product.applicability_checker, priority: 0 }
+
+  commerce_discounted_product.promotion_subscriber:
+    class: Drupal\commerce_discounted_product\EventSubscriber\PromotionEventSubscriber
+    arguments:
+      - '@commerce_discounted_product.chain_applicability_checker'
+      - '@commerce_discounted_product.discounted_product_storage'
+    tags:
+      - { name: event_subscriber }
+
+  commerce_discounted_product.product_subscriber:
+    class: Drupal\commerce_discounted_product\EventSubscriber\ProductEventSubscriber
+    arguments:
+      - '@commerce_discounted_product.discounted_product_service'
+      - '@commerce_discounted_product.discounted_product_storage'
+    tags:
+      - { name: event_subscriber }

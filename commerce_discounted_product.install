@@ -1,0 +1,58 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions.
+ */
+
+/**
+ * Implements hook_schema().
+ */
+function commerce_discounted_product_schema() {
+  $schema['commerce_discounted_product'] = [
+    'description' => 'Stores information about relationships between Commerce promotions and products.',
+    'fields' => [
+      'promotion_id' => [
+        'description' => 'The promotion ID this record affects.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ],
+      'product_id' => [
+        'description' => 'The product ID this record affects.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ],
+      'start_date' => [
+        'description' => 'The start date value.',
+        'type' => 'varchar',
+        'length' => 20,
+      ],
+      'end_date' => [
+        'description' => 'The end date value.',
+        'type' => 'varchar',
+        'length' => 20,
+      ],
+    ],
+    'primary key' => [
+      'promotion_id',
+      'product_id',
+    ],
+    'foreign keys' => [
+      'affected_promotion' => [
+        'table' => 'commerce_promotion',
+        'columns' => [
+          'promotion_id' => 'promotion_id',
+        ],
+      ],
+      'affected_product' => [
+        'table' => 'commerce_product',
+        'columns' => [
+          'product_id' => 'product_id',
+        ],
+      ],
+    ],
+  ];
+  return $schema;
+}
