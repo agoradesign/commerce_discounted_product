@@ -91,7 +91,7 @@ class DiscountedProductStorage implements DiscountedProductStorageInterface {
   /**
    * {@inheritdoc}
    */
-  public function getDiscountedProductIds() {
+  public function query() {
     $today = gmdate('Y-m-d', $this->time->getRequestTime());
     $query = $this->database->select(static::DATABASE_TABLE_NAME, 'cdp');
     $or_condition = $query->orConditionGroup()
@@ -99,6 +99,14 @@ class DiscountedProductStorage implements DiscountedProductStorageInterface {
       ->isNull('cdp.end_date');
     $query->condition('cdp.start_date', $today, '<=');
     $query->condition($or_condition);
+    return $query;
+  }
+
+  /**
+   * {@inheritdoc}
+   */
+  public function getDiscountedProductIds() {
+    $query = $this->query();
     $query->fields('cdp', ['product_id']);
     return $query->execute()->fetchCol();
   }

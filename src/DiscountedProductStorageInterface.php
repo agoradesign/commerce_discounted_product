@@ -65,6 +65,14 @@ interface DiscountedProductStorageInterface {
   public function loadByPromotionId($promotion_id);
 
   /**
+   * Returns a select query, initialized with current date conditions.
+   *
+   * @return \Drupal\Core\Database\Query\SelectInterface
+   *   The select query, initialized for currently (today) discounted products.
+   */
+  public function query();
+
+  /**
    * Return the currently discounted product IDs.
    *
    * The entries stored in 'commerce_discounted_product' database table will be
