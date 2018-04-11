@@ -73,7 +73,7 @@ class DiscountedProductService implements DiscountedProductServiceInterface {
     foreach ($promotions as $promotion) {
       $product_ids = $this->applicabilityChecker->determineAffectedProductIds($promotion);
       if (in_array($product->id(), $product_ids)) {
-        $filtered_promotions[] = $promotion;
+        $filtered_promotions[$promotion->id()] = $promotion;
       }
     }
     return $filtered_promotions;

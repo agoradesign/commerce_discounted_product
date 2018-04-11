@@ -18,7 +18,8 @@ interface DiscountedProductServiceInterface {
    * @return \Drupal\commerce_promotion\Entity\PromotionInterface[]
    *   The applicable promotions. This includes future starting promotions and
    *   ignores usage limitations, but excludes promotions having coupons on the
-   *   other side, as well of inactive and outdated ones of course.
+   *   other side, as well of inactive and outdated ones of course. The array is
+   *   keyed by the promotion entity IDs.
    */
   public function loadApplicablePromotions(ProductInterface $product);
 
