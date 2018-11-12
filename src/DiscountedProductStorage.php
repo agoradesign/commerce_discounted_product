@@ -166,6 +166,12 @@ class DiscountedProductStorage implements DiscountedProductStorageInterface {
 
     if (!empty($promotions_to_insert)) {
       $insert_query = $this->database->insert(static::DATABASE_TABLE_NAME);
+      $insert_query->fields([
+        'promotion_id',
+        'product_id',
+        'start_date',
+        'end_date',
+      ]);
       foreach ($promotions_to_insert as $promotion_id) {
         $promotion = $applicable_promotions[$promotion_id];
         $insert_query->values($this->buildRowArray($promotion, $product->id()));
