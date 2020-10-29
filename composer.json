@@ -4,8 +4,15 @@
     "description": "Extends Drupal Commerce by storing information about which products are affected by promotions.",
     "license": "GPL-2.0-or-later",
     "homepage": "https://github.com/agoradesign/commerce_discounted_product",
+    "authors": [
+        {
+            "name": "Mag. Andreas Mayr (agoradesign)",
+            "homepage": "https://www.drupal.org/u/agoradesign",
+            "role": "Maintainer"
+        }
+    ],
     "require": {
-        "drupal/commerce": "~2.4"
-    },
-    "minimum-stability": "dev"
+        "drupal/core": "^8.8 || ^9",
+        "drupal/commerce": "~2.19"
+    }
 }
