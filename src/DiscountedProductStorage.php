@@ -30,7 +30,7 @@ class DiscountedProductStorage implements DiscountedProductStorageInterface {
    * {@inheritdoc}
    */
   public function cleanupOutdatedRecords() {
-    $today = gmdate('Y-m-d', $this->time->getRequestTime());
+    $today = gmdate('Y-m-d\TH:i:s', $this->time->getRequestTime());
     $this->database->delete(static::DATABASE_TABLE_NAME)
       ->isNotNull('end_date')
       ->condition('end_date', $today, '<')
@@ -92,7 +92,7 @@ class DiscountedProductStorage implements DiscountedProductStorageInterface {
    * {@inheritdoc}
    */
   public function query() {
-    $today = gmdate('Y-m-d', $this->time->getRequestTime());
+    $today = gmdate('Y-m-d\TH:i:s', $this->time->getRequestTime());
     $query = $this->database->select(static::DATABASE_TABLE_NAME, 'cdp');
     $or_condition = $query->orConditionGroup()
       ->condition('cdp.end_date', $today, '>=')

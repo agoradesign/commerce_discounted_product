@@ -39,7 +39,7 @@ class DiscountedProductFilter extends FilterPluginBase {
    */
   public function query() {
     $table = $this->ensureMyTable();
-    $today = gmdate('Y-m-d', \Drupal::time()->getRequestTime());
+    $today = gmdate('Y-m-d\TH:i:s', \Drupal::time()->getRequestTime());
     $end_date_condition = new Condition('OR');
     $end_date_condition->condition($table . '.end_date', $today, '>=');
     $end_date_condition->isNull($table . '.end_date');

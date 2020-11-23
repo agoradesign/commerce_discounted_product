@@ -38,7 +38,7 @@ class InactivePromotionApplicabilityChecker implements FinalDecisionApplicabilit
       return FALSE;
     }
     $end_date = $promotion->get('end_date')->value;
-    $today = gmdate('Y-m-d', $this->time->getRequestTime());
+    $today = gmdate('Y-m-d\TH:i:s', $this->time->getRequestTime());
     return $end_date < $today;
   }
 

@@ -53,7 +53,7 @@ class DiscountedProductService implements DiscountedProductServiceInterface {
    * {@inheritdoc}
    */
   public function loadApplicablePromotions(ProductInterface $product) {
-    $today = gmdate('Y-m-d', $this->time->getRequestTime());
+    $today = gmdate('Y-m-d\TH:i:s', $this->time->getRequestTime());
 
     $query = $this->promotionStorage->getQuery();
     $or_condition = $query->orConditionGroup()
