@@ -30,7 +30,7 @@ class PromotionEventSubscriber implements EventSubscriberInterface {
   /**
    * Constructs a new PromotionEventSubscriber object.
    *
-   * @param \Drupal\commerce_discounted_product\Applicability\ApplicabilityCheckerInterface
+   * @param \Drupal\commerce_discounted_product\Applicability\ApplicabilityCheckerInterface $applicability_checker
    *   The applicability checker.
    * @param DiscountedProductStorageInterface $discounted_product_storage
    *   The discounted product storage.

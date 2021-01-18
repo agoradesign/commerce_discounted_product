@@ -36,7 +36,7 @@ class DiscountedProductService implements DiscountedProductServiceInterface {
   /**
    * Constructs a new DiscountedProductService object.
    *
-   * @param \Drupal\commerce_discounted_product\Applicability\ApplicabilityCheckerInterface
+   * @param \Drupal\commerce_discounted_product\Applicability\ApplicabilityCheckerInterface $applicability_checker
    *   The applicability checker.
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
    *   The entity type manager.
