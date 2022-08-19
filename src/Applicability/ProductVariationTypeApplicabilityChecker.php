@@ -53,6 +53,7 @@ class ProductVariationTypeApplicabilityChecker implements ApplicabilityCheckerIn
       $query = $this->productStorage->getQuery();
       $query->condition('status', TRUE);
       $query->condition('variations.entity.type', $bundles, 'IN');
+      $query->accessCheck();
       $results[] = $query->execute();
     }
 

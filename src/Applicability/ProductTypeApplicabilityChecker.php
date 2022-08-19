@@ -53,6 +53,7 @@ class ProductTypeApplicabilityChecker implements ApplicabilityCheckerInterface {
       $query = $this->productStorage->getQuery();
       $query->condition('status', TRUE);
       $query->condition('type', $bundles, 'IN');
+      $query->accessCheck();
       $results[] = $query->execute();
     }
 

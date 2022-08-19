@@ -63,6 +63,7 @@ class DiscountedProductService implements DiscountedProductServiceInterface {
     $query->condition($or_condition);
     $query->notExists('coupons');
     $query->sort('weight');
+    $query->accessCheck();
     $result = $query->execute();
     if (empty($result)) {
       return [];
