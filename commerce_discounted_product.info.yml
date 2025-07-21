@@ -2,7 +2,7 @@ name: 'Commerce Discounted Product'
 type: module
 description: 'Extends Drupal Commerce by storing information about which products are affected by promotions.'
 package: 'Commerce (contrib)'
-core_version_requirement: ^9.2 || ^10
+core_version_requirement: ^10 || ^11
 
 dependencies:
   - commerce:commerce_product
