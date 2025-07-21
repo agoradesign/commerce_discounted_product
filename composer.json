@@ -13,6 +13,6 @@
     ],
     "require": {
         "drupal/core": "^9.2 || ^10",
-        "drupal/commerce": "^2.29 || 3"
+        "drupal/commerce": "^2.29 || ^3"
     }
 }
